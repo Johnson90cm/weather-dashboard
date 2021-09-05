@@ -27,13 +27,13 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         currentDateIcon.appendChild(iconImg)
         // return searched city temp
         var currentCityTemp = document.querySelector("#current-city-temp")
-        currentCityTemp.innerHTML = "Temperature: " + cityResponse.current.temp_f + "º"
+        currentCityTemp.innerHTML = "Temperature: " + cityResponse.current.temp_f + " ºF"
         // return searched city wind
         var currentCityWind = document.querySelector("#current-city-wind")
-        currentCityWind.innerHTML = "Wind MPH: " + cityResponse.current.wind_mph
+        currentCityWind.innerHTML = "Wind Speed: " + cityResponse.current.wind_mph + " MPH"
         // return searched city Humidity
         var currentCityHumidity = document.querySelector("#current-city-humidity")
-        currentCityHumidity.innerHTML = "Humidity: " + cityResponse.current.humidity
+        currentCityHumidity.innerHTML = "Humidity: " + cityResponse.current.humidity + "%"
         // return searched city UV Index
         var currentCityUvIndex = document.querySelector("#current-city-uv-index")
         currentCityUvIndex.innerHTML = "UV Index: " + cityResponse.current.uv
