@@ -27,3 +27,13 @@ input {
 #forecast {
     padding-left: 0px;
 }
+
+@media only screen and (max-width: 811px) {
+    header {
+      height: 150px
+    }
+
+    .card {
+        width:125px
+    }
+  }
