@@ -29,7 +29,7 @@ var getWeather = function () {
                 $(cityTemp).empty().append("Temp: " + data.main.temp + " ºF")
 
                 var cityWind = document.querySelector("#current-city-wind");
-                $(cityWind).empty().append("Wind: " + data.wind.speed + "mph");
+                $(cityWind).empty().append("Wind: " + data.wind.speed + " mph");
 
                 var cityHumidity = document.querySelector("#current-city-humidity");
                 $(cityHumidity).empty().append("Humidity: " + data.main.humidity);
