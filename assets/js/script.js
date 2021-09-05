@@ -82,8 +82,16 @@ var searchHistory = function () {
 
 
     // Load History
-    var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
-    cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
+    cityHistoryEl.innerHTML = ""
+    for (i=0; i < items.length; i++) {
+    var createHistory = document.createElement("button")
+    createHistory.setAttribute("class", "btn-secondary btn-lg btn-block")
+    createHistory.setAttribute("id",  "city-history")
+    createHistory.innerHTML = ("value", items[i])
+    cityHistoryEl.append(createHistory)
+    // var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
+    // cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
+    }
 }
 
 
@@ -98,9 +106,7 @@ function searchInput() {
     fiveDayForecast()
     searchHistory()
 
- 
-    console.log(items)
-    
+    console.log(items)    
 }
 
 $(document).on("click", "#city-history", function()
