@@ -10,6 +10,10 @@ var city = ""
 var cityHistoryEl = document.querySelector("#city-buttons")
 // var apiKey = "925a8b4084b1c37f40e3d24c3360648f"
 // var units = "&units=imperial";
+var pullHistory = document.querySelector("#city-history")
+var items = [];
+
+
 
 var getWeather = function () {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&units=imperial&appid=925a8b4084b1c37f40e3d24c3360648f")
@@ -71,25 +75,43 @@ var fiveDayForecast = function() {
         })
 }
 
-var searchHistory = function() {
-    localStorage.setItem("input", JSON.stringify(cityInputEl.value))
-}
+var searchHistory = function () {
 
-var loadHistory = function() {
-    var cityHistoryName = localStorage.getItem("input", (cityInputEl.value))
+    // Save History
+    localStorage.setItem("value", JSON.stringify(items))
+
+
+    // Load History
+    var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
     cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
 }
+
 
 searchButtonEl.addEventListener("click", (searchInput));
 function searchInput() {
 
     event.preventDefault();
 
+    items.push(cityInputEl.value)
+
     getWeather();
     fiveDayForecast()
     searchHistory()
-    loadHistory()
+
+ 
+    console.log(items)
+    
 }
+
+$(document).on("click", "#city-history", function()
+    {
+    alert("you clicked the button!")
+})
+
+// pullHistory.addEventListener("click", (historyPull));
+// function historyPull() {
+//     alert("you clicked paris")
+// }
 
 // fetch data from weatherAPI.com
 // fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac4705837152922210309&q=paris&days=5&aqi=no&alerts=no")
