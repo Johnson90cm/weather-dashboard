@@ -13,11 +13,17 @@ input {
     border-radius: 15px;
 }
 
-#forecast-item {
-    /* background-color: lightgrey; */
+.card {
+    margin-top: 5px;
+    display: inline-block;
+    background-color: lightgray;
     text-align: center;
     height: 225px;
     width: 175px;
     padding: 10px;
     border-radius: 15px;
+}
+
+#forecast {
+    padding-left: 0px;
 }

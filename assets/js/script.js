@@ -16,7 +16,7 @@ var items = [];
 
 
 var getWeather = function () {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&units=imperial&appid=925a8b4084b1c37f40e3d24c3360648f")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&units=imperial&appid=c9a9ed03a355403f4cb9a36e931c0b4a")
         .then(function (response) {
             response.json().then(function (data) {
 
@@ -40,12 +40,14 @@ var getWeather = function () {
                 UvIndex.innerHTML = data.main.humidity
                 currentCityUvIndex.innerHTML = "UV: "
                 currentCityUvIndex.appendChild(UvIndex)
+
+                fiveDayForecast()
             })
         })
 }
 
-var fiveDayForecast = function() {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=925a8b4084b1c37f40e3d24c3360648f&units=imperial")
+var fiveDayForecast = function () {
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityInputEl.value + "&appid=c9a9ed03a355403f4cb9a36e931c0b4a&units=imperial")
         .then(function (response) {
             return response.json()
         })
@@ -61,7 +63,7 @@ var fiveDayForecast = function() {
 
                 forecastEl.innerHTML = forecastEl.innerHTML +
                     `
-                    <div class="row">
+                    <div class="card" style="width: 11rem;">
                         <div id="forecast-item">
                             <h5>${moment(fiveDayCastArray[index].dt, "X").format("MM/DD/YYYY")}</h5>
                             <img src=" http://openweathermap.org/img/wn/${fiveDayCastArray[index].weather[0].icon}.png">
@@ -71,6 +73,8 @@ var fiveDayForecast = function() {
                         </div>
                     </div>
                     `
+
+
             }
         })
 }
@@ -80,17 +84,20 @@ var searchHistory = function () {
     // Save History
     localStorage.setItem("value", JSON.stringify(items))
 
-
     // Load History
     cityHistoryEl.innerHTML = ""
-    for (i=0; i < items.length; i++) {
-    var createHistory = document.createElement("button")
-    createHistory.setAttribute("class", "btn-secondary btn-lg btn-block")
-    createHistory.setAttribute("id",  "city-history")
-    createHistory.innerHTML = ("value", items[i])
-    cityHistoryEl.append(createHistory)
-    // var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
-    // cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
+    for (i = 0; i < items.length; i++) {
+        var createHistory = document.createElement("button")
+        createHistory.setAttribute("class", "btn-secondary btn-lg btn-block")
+        createHistory.setAttribute("id", "city-history")
+        createHistory.innerHTML = ("value", items[i])
+        cityHistoryEl.append(createHistory)
+
+        $(document).on("click", "#city-history", function () {
+            getWeather(createHistory.value)
+        })
+        // var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
+        // cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
     }
 }
 
@@ -103,16 +110,13 @@ function searchInput() {
     items.push(cityInputEl.value)
 
     getWeather();
-    fiveDayForecast()
+
     searchHistory()
 
-    console.log(items)    
+    console.log(items)
 }
 
-$(document).on("click", "#city-history", function()
-    {
-    alert("you clicked the button!")
-})
+
 
 // pullHistory.addEventListener("click", (historyPull));
 // function historyPull() {
