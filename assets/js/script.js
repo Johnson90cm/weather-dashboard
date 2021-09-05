@@ -7,7 +7,7 @@ var searchButtonEl = document.querySelector("#search-button")
 // var cityTerm = document.getElementById('city-search').value;
 var city = ""
 // var api = "https://api.openweathermap.org/data/2.5/weather?q="
-var cityHistoryEl = document.querySelector("#city-history")
+var cityHistoryEl = document.querySelector("#city-buttons")
 // var apiKey = "925a8b4084b1c37f40e3d24c3360648f"
 // var units = "&units=imperial";
 
@@ -76,8 +76,8 @@ var searchHistory = function() {
 }
 
 var loadHistory = function() {
-    var cityHistoryName = localStorage.getItem("input", JSON.parse(cityInputEl.value))
-    cityHistoryEl.innerHTML = cityHistoryName
+    var cityHistoryName = localStorage.getItem("input", (cityInputEl.value))
+    cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
 }
 
 searchButtonEl.addEventListener("click", (searchInput));
