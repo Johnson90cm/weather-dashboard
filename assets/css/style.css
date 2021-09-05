@@ -1,6 +1,7 @@
-/* header {
+header {
     height: 100px;
-} */
+    padding-top: 25px;
+}
 
 input {
     height: 50px;
@@ -8,7 +9,7 @@ input {
 
 #weekday-item {
     text-align: center;
-    height: 245px;
+    height: 250px;
     width: 175px;
     padding: 10px;
     border-radius: 15px;
