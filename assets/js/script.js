@@ -30,13 +30,17 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         currentCityTemp.innerHTML = "Temperature: " + cityResponse.current.temp_f + " ºF"
         // return searched city wind
         var currentCityWind = document.querySelector("#current-city-wind")
-        currentCityWind.innerHTML = "Wind Speed: " + cityResponse.current.wind_mph + " MPH"
+        currentCityWind.innerHTML = "Wind Speed: " + cityResponse.current.wind_mph + " mph"
         // return searched city Humidity
         var currentCityHumidity = document.querySelector("#current-city-humidity")
         currentCityHumidity.innerHTML = "Humidity: " + cityResponse.current.humidity + "%"
         // return searched city UV Index
         var currentCityUvIndex = document.querySelector("#current-city-uv-index")
-        currentCityUvIndex.innerHTML = "UV Index: " + cityResponse.current.uv
+        var UvIndex = document.createElement("p")
+        UvIndex.classList.add("badge", "badge-danger")
+        UvIndex.innerHTML = cityResponse.current.uv
+        currentCityUvIndex.innerHTML = "UV: "
+        currentCityUvIndex.appendChild(UvIndex)
         // add color to city UV Index
   
 
@@ -57,13 +61,13 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         currentDateIcon1.appendChild(iconImg1)
         // temp
         var dayOneTemp = document.querySelector("#weekday-item-1-temp")
-        dayOneTemp.innerHTML = "Temperature: " + cityResponse.forecast.forecastday[0].day.avgtemp_f
+        dayOneTemp.innerHTML = "Temp: " + cityResponse.forecast.forecastday[0].day.avgtemp_f + " ºF"
         // wind
         var dayOneWind = document.querySelector("#weekday-item-1-wind")
-        dayOneWind.innerHTML = "Wind: " + cityResponse.forecast.forecastday[0].day.maxwind_mph
+        dayOneWind.innerHTML = "Wind: " + cityResponse.forecast.forecastday[0].day.maxwind_mph + " mph"
         // humidity
         var dayOneHumidity = document.querySelector("#weekday-item-1-humidity")
-        dayOneHumidity.innerHTML = "Humidity: " + cityResponse.forecast.forecastday[0].day.avghumidity
+        dayOneHumidity.innerHTML = "Humidity: " + cityResponse.forecast.forecastday[0].day.avghumidity + "%"
 
     })
 
