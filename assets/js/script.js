@@ -7,7 +7,7 @@ var searchButtonEl = document.querySelector("#search-button")
 var cityTerm = document.getElementById('city-search').value;
 
 // fetch data from weatherAPI.com
-fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac4705837152922210309&q=paris&days=7&aqi=no&alerts=no")
+fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac4705837152922210309&q=paris&days=5&aqi=no&alerts=no")
 
     .then(function (cityResponse) {
         return cityResponse.json();
@@ -19,7 +19,7 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         citySearchTerm.innerHTML = cityResponse.location.name
         // return searched date & time
         var currentDate = document.querySelector("#current-date")
-        currentDate.innerHTML = cityResponse.location.localtime
+        currentDate.innerHTML = "(" + cityResponse.location.localtime + ")"
         // return searched date weather icon
         var currentDateIcon = document.querySelector("#current-date-weather-icon")
         var iconImg = document.createElement('img');
@@ -27,21 +27,23 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         currentDateIcon.appendChild(iconImg)
         // return searched city temp
         var currentCityTemp = document.querySelector("#current-city-temp")
-        currentCityTemp.innerHTML = cityResponse.current.temp_f
+        currentCityTemp.innerHTML = "Temperature: " + cityResponse.current.temp_f + "º"
         // return searched city wind
         var currentCityWind = document.querySelector("#current-city-wind")
-        currentCityWind.innerHTML = cityResponse.current.wind_mph
+        currentCityWind.innerHTML = "Wind MPH: " + cityResponse.current.wind_mph
         // return searched city Humidity
         var currentCityHumidity = document.querySelector("#current-city-humidity")
-        currentCityHumidity.innerHTML = cityResponse.current.humidity
+        currentCityHumidity.innerHTML = "Humidity: " + cityResponse.current.humidity
         // return searched city UV Index
         var currentCityUvIndex = document.querySelector("#current-city-uv-index")
-        currentCityUvIndex.innerHTML = cityResponse.current.uv
+        currentCityUvIndex.innerHTML = "UV Index: " + cityResponse.current.uv
+        // add color to city UV Index
+  
 
 
         // forecast bg
         var forecastBackground = document.querySelector("#weekday-item")
-        forecastBackground.classList.add("bg-secondary", "text-white")
+        forecastBackground.classList.add("bg-primary", "text-white")
 
         // forecast day 1
 
@@ -55,13 +57,13 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac47058371529222
         currentDateIcon1.appendChild(iconImg1)
         // temp
         var dayOneTemp = document.querySelector("#weekday-item-1-temp")
-        dayOneTemp.innerHTML = cityResponse.forecast.forecastday[0].day.avgtemp_f
+        dayOneTemp.innerHTML = "Temperature: " + cityResponse.forecast.forecastday[0].day.avgtemp_f
         // wind
         var dayOneWind = document.querySelector("#weekday-item-1-wind")
-        dayOneWind.innerHTML = cityResponse.forecast.forecastday[0].day.maxwind_mph
+        dayOneWind.innerHTML = "Wind: " + cityResponse.forecast.forecastday[0].day.maxwind_mph
         // humidity
         var dayOneHumidity = document.querySelector("#weekday-item-1-humidity")
-        dayOneHumidity.innerHTML = cityResponse.forecast.forecastday[0].day.avghumidity
+        dayOneHumidity.innerHTML = "Humidity: " + cityResponse.forecast.forecastday[0].day.avghumidity
 
     })
 

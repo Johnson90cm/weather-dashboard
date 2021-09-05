@@ -7,8 +7,9 @@ input {
 }
 
 #weekday-item {
-    height: 350px;
-    width: 150px;
-    padding-left: 15px;
-    margin-bottom: 15px;
+    text-align: center;
+    height: 245px;
+    width: 175px;
+    padding: 10px;
+    border-radius: 15px;
 }
