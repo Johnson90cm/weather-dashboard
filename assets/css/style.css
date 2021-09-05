@@ -13,9 +13,10 @@ input {
     border-radius: 15px;
 }
 
-#weekday-item {
+#forecast-item {
+    /* background-color: lightgrey; */
     text-align: center;
-    height: 250px;
+    height: 225px;
     width: 175px;
     padding: 10px;
     border-radius: 15px;
