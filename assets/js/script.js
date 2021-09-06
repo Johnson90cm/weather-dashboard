@@ -1,19 +1,10 @@
-// var cityFormEl = document.querySelector("#city-form")
 var cityInputEl = document.querySelector("#city-search");
-// var cityContainerEl = document.querySelector("#city-container")
-// var citySearchTerm = document.querySelector("#current-city")
-// var cityButtonsEl = document.querySelector("#city-buttons")
 var searchButtonEl = document.querySelector("#search-button");
-// var cityTerm = document.getElementById('city-search').value;
-var city = "";
-// var api = "https://api.openweathermap.org/data/2.5/weather?q="
 var cityHistoryEl = document.querySelector("#city-buttons");
-// var apiKey = "925a8b4084b1c37f40e3d24c3360648f"
-// var units = "&units=imperial";
 var pullHistory = document.querySelector("#city-history");
 var items = [];
 
-
+// render current weather search
 var getWeather = function (city) {
 
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=c9a9ed03a355403f4cb9a36e931c0b4a")
@@ -46,6 +37,7 @@ var getWeather = function (city) {
         })
 }
 
+// render current weather forecast - 5 days
 var fiveDayForecast = function (city) {
     fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c9a9ed03a355403f4cb9a36e931c0b4a&units=imperial")
         .then(function (response) {
@@ -79,6 +71,7 @@ var fiveDayForecast = function (city) {
         })
 }
 
+// save and render searched cities history
 var searchHistory = function () {
 
     // Save History
@@ -89,19 +82,15 @@ var searchHistory = function () {
     for (i = 0; i < items.length; i++) {
         var createHistory = document.createElement("button")
         createHistory.setAttribute("class", "btn-secondary btn-lg btn-block city-history")
+
         createHistory.innerHTML = ("value", items[i])
         cityHistoryEl.append(createHistory)
-
-        // $(document).on("click", "#city-history", function () {
-        //     getWeather(createHistory.value)
-        // })
-        // var cityHistoryName = localStorage.getItem("value", (cityInputEl.value))
-        // cityHistoryEl.innerHTML = "<button id='city-history' class='btn-secondary btn-lg btn-block'>" + cityHistoryName + "</button>"
     }
 }
 
+// city history handler
 function handleSearchHistory(event) {
-    console.log(event.target)
+
     if (!event.target.matches(".city-history")) {
         return
     }
@@ -110,6 +99,7 @@ function handleSearchHistory(event) {
     getWeather(cityTarget)
 }
 
+// search button handler
 searchButtonEl.addEventListener("click", (searchInput));
 function searchInput() {
 
@@ -126,92 +116,5 @@ function searchInput() {
     console.log(items)
 }
 
+// history button handler
 cityHistoryEl.addEventListener("click", handleSearchHistory)
-
-// pullHistory.addEventListener("click", (historyPull));
-// function historyPull() {
-//     alert("you clicked paris")
-// }
-
-// fetch data from weatherAPI.com
-// fetch("http://api.weatherapi.com/v1/forecast.json?key=0d8aceedf9ac4705837152922210309&q=paris&days=5&aqi=no&alerts=no")
-
-//     .then(function (cityResponse) {
-//         return cityResponse.json();
-//     })
-
-//     .then(function (cityResponse) {
-//         console.log(cityResponse)
-//         // return searched name
-//         citySearchTerm.innerHTML = cityResponse.location.name
-//         // return searched date & time
-//         var currentDate = document.querySelector("#current-date")
-//         currentDate.innerHTML = "(" + cityResponse.location.localtime + ")"
-//         // return searched date weather icon
-//         var currentDateIcon = document.querySelector("#current-date-weather-icon")
-//         var iconImg = document.createElement('img');
-//         iconImg.setAttribute('src', cityResponse.current.condition.icon)
-//         currentDateIcon.appendChild(iconImg)
-//         // return searched city temp
-//         var currentCityTemp = document.querySelector("#current-city-temp")
-//         currentCityTemp.innerHTML = "Temperature: " + cityResponse.current.temp_f + " ºF"
-//         // return searched city wind
-//         var currentCityWind = document.querySelector("#current-city-wind")
-//         currentCityWind.innerHTML = "Wind Speed: " + cityResponse.current.wind_mph + " mph"
-//         // return searched city Humidity
-//         var currentCityHumidity = document.querySelector("#current-city-humidity")
-//         currentCityHumidity.innerHTML = "Humidity: " + cityResponse.current.humidity + "%"
-//         // return searched city UV Index
-//         var currentCityUvIndex = document.querySelector("#current-city-uv-index")
-//         var UvIndex = document.createElement("p")
-//         UvIndex.classList.add("badge", "badge-danger")
-//         UvIndex.innerHTML = cityResponse.current.uv
-//         currentCityUvIndex.innerHTML = "UV: "
-//         currentCityUvIndex.appendChild(UvIndex)
-//         // add color to city UV Index
-
-
-
-//         // forecast bg
-//         var forecastBackground = document.querySelector("#weekday-item")
-//         forecastBackground.classList.add("bg-primary", "text-white")
-
-//         // forecast day 1
-
-//         // date
-//         var dayOneDate = document.querySelector("#weekday-item-1-date")
-//         dayOneDate.innerHTML = cityResponse.forecast.forecastday[0].date
-//         // icon
-//         var currentDateIcon1 = document.querySelector("#weekday-item-1-icon")
-//         var iconImg1 = document.createElement('img');
-//         iconImg1.setAttribute('src', cityResponse.forecast.forecastday[0].day.condition.icon)
-//         currentDateIcon1.appendChild(iconImg1)
-//         // temp
-//         var dayOneTemp = document.querySelector("#weekday-item-1-temp")
-//         dayOneTemp.innerHTML = "Temp: " + cityResponse.forecast.forecastday[0].day.avgtemp_f + " ºF"
-//         // wind
-//         var dayOneWind = document.querySelector("#weekday-item-1-wind")
-//         dayOneWind.innerHTML = "Wind: " + cityResponse.forecast.forecastday[0].day.maxwind_mph + " mph"
-//         // humidity
-//         var dayOneHumidity = document.querySelector("#weekday-item-1-humidity")
-//         dayOneHumidity.innerHTML = "Humidity: " + cityResponse.forecast.forecastday[0].day.avghumidity + "%"
-
-//     })
-
-// var searchSubmitHandler = function (event) {
-//     event.preventDefault();
-
-//     var cityName = cityInputEl.value.trim()
-
-//     if (cityName) {
-//         cityInputEl.value = ""
-//     } else {
-//         alert("Enter a City Name")
-//     }
-// }
-
-// var buttonClickHandler = function (event) {
-//     var cityName = event.target.getAttribute("")
-// }
-
-// searchButtonEl.addEventListener("click", getWeather)
