@@ -7,7 +7,7 @@ var items = [];
 // render current weather search
 var getWeather = function (city) {
 
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=c9a9ed03a355403f4cb9a36e931c0b4a")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=925a8b4084b1c37f40e3d24c3360648f")
         .then(function (response) {
             response.json().then(function (data) {
 
@@ -39,7 +39,7 @@ var getWeather = function (city) {
 
 // render current weather forecast - 5 days
 var fiveDayForecast = function (city) {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c9a9ed03a355403f4cb9a36e931c0b4a&units=imperial")
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=925a8b4084b1c37f40e3d24c3360648f&units=imperial")
         .then(function (response) {
             return response.json()
         })
